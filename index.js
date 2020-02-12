@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 //default mongodb connection
 var mongoDb_url = 'mongodb://someuser:abcd1234@ds253104.mlab.com:53104/ksacampsites';
-mongoose.connect(mongoDb_url, { useNewUrlParser: true });
+mongoose.connect(mongoDb_url, { useNewUrlParser: true, useUnifiedTopology: true });
 //Get the default connection
 var db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
