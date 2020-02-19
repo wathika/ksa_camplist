@@ -19,8 +19,22 @@ router.get('/:id', (req, res) => {
 });
 
 //Create one campsite
-router.post('/', (req, res) => {
-
+router.post('/', async (req, res) => {
+  const campsite = new Campsite({
+    name: req.body.name,
+    location: req.body.location,
+    description: req.body.description,
+    camp_master: req.body.camp_master,
+    contact_no: req.body.contact_no
+  });
+  
+  try {
+    const newCampsite = await campsite.save();
+    res.status(201).json(newCampsite);
+  }catch(err) {
+    res.status(400).json({ message: err.message });
+  };
+  
 });
 
 //Update one campsite
