@@ -3,8 +3,14 @@ const router = express.Router();
 const Campsite = require('../models/campsite')
 
 //Get all campsites
-router.get('/', (req, res) => {
-  res.send("Hello world!");
+router.get('/', async (req, res) => {
+  //res.send("Hello world!");
+  try {
+    const campsites = await Campsite.find();
+    res.json(campsites);
+  }catch() {
+    res.status(500).json({ message: err.message });
+  };
 });
 
 //Get one campsite
