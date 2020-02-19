@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   try {
     const campsites = await Campsite.find();
     res.json(campsites);
-  }catch() {
+  }catch(err) {
     res.status(500).json({ message: err.message });
   };
 });
