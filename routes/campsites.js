@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Campsite = require('../models/campsite')
 
 //Get all campsites
 router.get('/', (req, res) => {
