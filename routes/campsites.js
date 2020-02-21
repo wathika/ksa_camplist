@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 //Get one campsite
-router.get('/:id', (req, res) => {
+router.get('/:id', getCampsite, (req, res) => {
 
 });
 
@@ -38,13 +38,28 @@ router.post('/', async (req, res) => {
 });
 
 //Update one campsite
-router.patch('/:id', (req, res) => {
+router.patch('/:id', getCampsite, async (req, res) => {
 
 });
 
 //Delete one campsite
-router.delete('/:id', (req, res) => {
+router.delete('/:id', getCampsite, async (req, res) => {
   
 });
+
+//a middleware function
+async function getCampsite(req, res, next){
+  try {
+    campsite = await Campsite.findById(req.params.id);
+    if(campsite == null){
+      return res.status(404).json({ message: "Cant find campsite" });
+    };
+  }catch(err) {
+    return res.status(500).json({ message: err.message });
+  };
+  res.campsite = campsite;
+  next();
+};
+
 
 module.exports = router;
